@@ -8,7 +8,6 @@ export default defineComponent ({
         const state = reactive({
             name: 'tom'
         })
-        console.log(1)
         return{
             state
         }

@@ -3,25 +3,25 @@ import $ from 'jquery'
 import './utils/Global.less'
 import Hello from './views/test/index'
 import Second from './views/test/Fun'
-import Test from './views/test/test'
+// import Test from './views/test/test'
+import Login from './views/plugins/Login'
 createApp({
     el: '#app',
     setup() {
-        onMounted(() => {
-            if(true){
-                // Test.mount('Test')
-            }
-        })
+        return{
+        }
     },
     components:{
         Hello,
         Second,
-        Test
+        // Test,
+        Login
     },
     template: `
+            <Login/>
             <Hello/>
             <Second/>
-            <Test/>
+            
     ` 
     
 }).mount('#app')

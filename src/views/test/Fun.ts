@@ -1,16 +1,17 @@
 import { defineComponent } from "@vue/runtime-core";
- 
+ import Global from "../../utils/Global";
+ import { ref } from "vue";
  export default defineComponent ({
     name:'Second',
-    data:()=>{
+    setup(){
+        const Str=ref('这是我的第二个子节点')
         return{
-            Str : '这是我的第二个子节点',
+            Str,
+            Global
         }
     },
-    created() {
-        console.log(2)
-    },
+    
     template:` 
-        <div id="Second">{{Str}}</div>
+        <div id="Second" v-if="Global.Status.isLogin?true:false">{{Str}}{{Global.Status.isLogin}}</div>
     `
  })
