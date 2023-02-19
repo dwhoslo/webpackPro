@@ -1,5 +1,6 @@
 import { defineComponent } from "@vue/runtime-core";
 import { createApp ,reactive  } from "vue";
+import Global from "../../utils/Global";
 // Vue3语法
 
 export default defineComponent ({
@@ -9,13 +10,11 @@ export default defineComponent ({
             name: 'tom'
         })
         return{
-            state
+            state,
+            Global
         }
     },
     template:` 
-        <div id="First">{{state.name}}</div>
-    `,
-    methods:{
-        
-    }
+        <div id="First" v-if="Global.Status.isLogin?true:false">{{state.name}}</div>
+    `
 })

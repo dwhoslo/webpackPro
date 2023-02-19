@@ -5,10 +5,13 @@ import Hello from './views/test/index'
 import Second from './views/test/Fun'
 // import Test from './views/test/test'
 import Login from './views/plugins/Login'
+import Global from './utils/Global'
 createApp({
     el: '#app',
     setup() {
+        Global.Status.isLogin = false;
         return{
+            Global
         }
     },
     components:{
