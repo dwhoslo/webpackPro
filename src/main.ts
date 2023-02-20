@@ -9,8 +9,6 @@ import Global from './utils/Global'
 createApp({
     el: '#app',
     setup() {
-        // Global.Status.isLogin = false;
-        console.log(Global.Status.isLogin)
         return{
             Global
         }
