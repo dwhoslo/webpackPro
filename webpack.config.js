@@ -28,6 +28,7 @@ module.exports = {
       },
     open: true,
     port:3030,
+    hot: true,
     // contentBase: "./dist",
     client: {
         overlay: {
