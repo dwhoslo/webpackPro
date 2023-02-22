@@ -77,6 +77,7 @@ module.exports = {
             },
             exclude: /node_modules/,
         },
+        { test: /.css$/, use: ['style-loader', 'css-loader'] },/*解析css, 并把css添加到html的style标签里*/
         // 导入less文件
         {
             test: /\.less$/,

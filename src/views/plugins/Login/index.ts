@@ -1,14 +1,14 @@
+import { ElMessage } from 'element-plus';
 import { defineComponent } from "@vue/runtime-core";
 import { createApp ,reactive ,ref } from "vue";
 import './index.less'
-import Global from "../../../utils/Global";
-import { MyFun } from "../../test/class";
-// Vue3语法
+import Global from "../../../utils/Global/Global";
+import { UserLogin } from "../../../utils/XHR/Controller/users";// Vue3语法
 let Login_html = `
     <div class="loginContainer" v-if="!Global.Status.isLogin">
         <div class="loginBox">
             <h2>login</h2>
-            <form action="">
+            <form>
                 <div class="item">
                     <input type="text" v-model="state.username" required>
                     <label for="">userName</label>
@@ -17,7 +17,7 @@ let Login_html = `
                     <input type="password" v-model="state.password" required>
                     <label for="">password</label>
                 </div>
-                <button class="btn" @click="Login">submit
+                <button class="btn" type="button" @click="Login">登录
                     <span></span>
                     <span></span>
                     <span></span>
@@ -34,26 +34,31 @@ export default defineComponent ({
             username:any,
             password:any
         }
-        const loginStatus = ref(false)
         const state:state = reactive({
             username: '',
             password: ''
         })
-        const Login = () => {
+        const Login = async() => {
             if(state.username === '' || state.password === ''){
+                ElMessage.error('输入字段不能为空')
                 return
             }else{
-                loginStatus.value = !loginStatus.value
-                Global.Status.isLogin = true
-                MyFun.Test.Fun()    // 这里调用了命名空间的中Test类的Fun方法 （直接调用，无需实例化）
-                // let aa =new MyFun.Test()
-                // console.log(aa)
-                window.localStorage.setItem('isLogin',true)
+                let res:any = await UserLogin('login',state)
+                if(res.code === '200'){
+                    window.localStorage.setItem('isLogin',true)
+                    window.localStorage.setItem('username',state.username)
+                    window.localStorage.setItem('password',state.password)
+                    Global.Status.isLogin = true
+                    ElMessage.success('登录成功')
+                }else{
+                    state.username = ''
+                    state.password = ''
+                    ElMessage.error(res.msg || '登录失败')
+                }
             }
             
         }
         return{
-            loginStatus,
             state,
             Global,
             Login

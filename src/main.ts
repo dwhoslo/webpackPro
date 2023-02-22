@@ -1,30 +1,26 @@
 import { createApp , onMounted} from 'vue'
 import $ from 'jquery'
-import './utils/Global.less'
+import 'element-plus/dist/index.css'
+import './utils/Style/Global.less'
 import Hello from './views/test/index'
 import Second from './views/test/Fun'
-// import Test from './views/test/test'
 import Login from './views/plugins/Login'
-import Global from './utils/Global'
 createApp({
     el: '#app',
     setup() {
         return{
-            Global
+
         }
     },
     components:{
         Hello,
         Second,
-        // Test,
         Login
     },
     template: `
             <Login/>
             <Hello/>
-            <Second/>
-            
-    ` 
+            <Second/>` 
     
 }).mount('#app')
 

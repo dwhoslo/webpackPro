@@ -6,6 +6,14 @@ const Status:Status = reactive( {
     isLogin: false || window.localStorage.getItem('isLogin'),
 })
 
-export default {
-    Status
+interface o_Request{
+    BASE_URL:string,
+}
+const o_Request:o_Request = reactive({
+    BASE_URL: 'http://43.142.180.157:3000/'
+})
+
+export default  {
+    Status,
+    o_Request
 }
