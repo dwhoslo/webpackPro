@@ -6,7 +6,7 @@ export default defineComponent ({
     name:'Test',
     setup(){
         const state = reactive({
-            name: 'Test'
+            name: '这个是内嵌的div组件，属于子节点'
         })
         console.log(3)
         return{
