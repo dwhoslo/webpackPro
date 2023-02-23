@@ -4,9 +4,11 @@ import { createApp ,reactive ,ref } from "vue";
 import './index.less'
 import Global from "../../../utils/Global/Global";
 import { UserLogin } from "../../../utils/XHR/Controller/users";// Vue3语法
+import { Back } from "@element-plus/icons-vue";
 let Login_html = `
     <div class="loginContainer" v-if="!Global.Status.isLogin">
         <div class="loginBox">
+            <div class="toRegister">还没账号？<span @click="toRegisterPanel">去注册</span></div>
             <h2>login</h2>
             <form>
                 <div class="item">
@@ -24,11 +26,21 @@ let Login_html = `
                     <span></span>
                 </button>
             </form>
+            <!-- 注册面板 -->
+            <div class="RegisterPanel">
+                <div class="toLoginPanel" @click="toLoginPanel">
+                    <Back /><p>返回登录</p>
+                </div>
+            
+            </div>
         </div>
     </div>
 `  
 export default defineComponent ({
     name:'Login',
+    components:{
+        Back
+    },
     setup(){
         interface state {
             username:any,
@@ -58,10 +70,22 @@ export default defineComponent ({
             }
             
         }
+        const toRegisterPanel = () => {
+            $('.RegisterPanel').animate({
+                "left":0
+            },200)
+        }
+        const toLoginPanel = () => {
+            $('.RegisterPanel').animate({
+                "left":400
+            },200)
+        }
         return{
             state,
             Global,
-            Login
+            Login,
+            toRegisterPanel,
+            toLoginPanel
         }
     },
     template:Login_html

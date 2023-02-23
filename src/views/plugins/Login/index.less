@@ -7,6 +7,7 @@
     font-size: 16px;
     color: #03e9f4;
     .loginBox {
+        position: relative;
         width: 400px;
         height: 364px;
         background-color: #0c1622;
@@ -15,6 +16,19 @@
         box-shadow: 0 15px 25px 0 rgba(0, 0, 0, .6);
         padding: 40px;
         box-sizing: border-box;
+        overflow: hidden;
+        .toRegister{
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #ffffff;
+            font-size: 12px;
+            >span{
+                color: red;
+                font-size: 12px;
+                cursor: pointer;
+            }
+        }
         h2 {
             text-align: center;
             color: aliceblue;
@@ -139,6 +153,36 @@
                     0 0 50px 0 #03e9f4,
                     0 0 100px 0 #03e9f4;
                 transition: all 1s linear;
+            }
+        }
+        .RegisterPanel{
+            position: absolute;
+            top: 0;
+            left: 400px;
+            width: 400px;
+            height: 100%;
+            background-color: #0c1622;
+            border-radius: 10px;
+            box-shadow: 0 15px 25px 0 rgba(0, 0, 0, 0.6);
+            .toLoginPanel{
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                width: auto;
+                height: 20px;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                >svg{
+                    width:20px;
+                    height:20px;
+                    color: #ffffff;
+                }
+                >p{
+                    color: #ffffff;
+                    font-size: 15px;
+                    margin-left: 5px;
+                }
             }
         }
     }
