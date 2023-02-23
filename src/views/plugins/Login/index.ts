@@ -4,7 +4,7 @@ import { createApp ,reactive ,ref } from "vue";
 import './index.less'
 import Global from "../../../utils/Global/Global";
 import { UserLogin } from "../../../utils/XHR/Controller/users";// Vue3语法
-import { Back } from "@element-plus/icons-vue";
+import Register from '../Register';
 let Login_html = `
     <div class="loginContainer" v-if="!Global.Status.isLogin">
         <div class="loginBox">
@@ -27,19 +27,14 @@ let Login_html = `
                 </button>
             </form>
             <!-- 注册面板 -->
-            <div class="RegisterPanel">
-                <div class="toLoginPanel" @click="toLoginPanel">
-                    <Back /><p>返回登录</p>
-                </div>
-            
-            </div>
+            <Register />
         </div>
     </div>
 `  
 export default defineComponent ({
     name:'Login',
     components:{
-        Back
+        Register
     },
     setup(){
         interface state {
@@ -75,17 +70,11 @@ export default defineComponent ({
                 "left":0
             },200)
         }
-        const toLoginPanel = () => {
-            $('.RegisterPanel').animate({
-                "left":400
-            },200)
-        }
         return{
             state,
             Global,
             Login,
             toRegisterPanel,
-            toLoginPanel
         }
     },
     template:Login_html
