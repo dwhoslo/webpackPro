@@ -22,7 +22,7 @@ module.exports = {
         // Don't be confused with `devMiddleware.publicPath`, it is `publicPath` for static directory
         // Can be:
         // publicPath: ['/static-public-path-one/', '/static-public-path-two/'],
-        publicPath: "/static-public-path/",
+        publicPath: "./",
         // Can be:
         // serveIndex: {} (options for the `serveIndex` option you can find https://github.com/expressjs/serve-index)
         serveIndex: true,
@@ -75,67 +75,74 @@ module.exports = {
   module: {
     rules: [
         {
-            test: /\.ts?$/,
-            use: {
-            loader: "ts-loader",
-            },
-            exclude: /node_modules/,
+          test: /\.ts?$/,
+          use: {
+          loader: "ts-loader",
+          },
+          exclude: /node_modules/,
         },
-        { test: /.css$/, use: ['style-loader', 'css-loader'] },/*解析css, 并把css添加到html的style标签里*/
+        { /*解析css, 并把css添加到html的style标签里*/
+          test: /.css$/, 
+          use: [
+            'style-loader',
+            'css-loader'
+          ] 
+        },
         // 导入less文件
         {
-            test: /\.less$/,
-            use: [{
-                loader: "style-loader" // creates style nodes from JS strings
-            }, {
-                loader: "css-loader" // translates CSS into CommonJS
-            }, {
+          test: /\.less$/,
+          use: [
+            {
+              loader: "style-loader" // creates style nodes from JS strings
+            }, 
+            {
+              loader: "css-loader" // translates CSS into CommonJS
+            }, 
+            {
                 loader: "less-loader" // compiles Less to CSS
-            }]
+            }
+          ]
         },
         /*配置url*/
-      {
-        test: /\.(png|jpg|gif|jpeg)$/,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            //当加载图片，小于limit时，会将图片编译成base64字符串形式
-            //当加载图片，大于limit时，会将图片使用file-loader模块加载
-            limit: 8192,
-            name: 'img/[name].[hash:8].[ext]'
+        {
+          test: /\.(png|jpg|gif|jpeg)$/,
+          use: [{
+            loader: 'url-loader',
+            options: {
+              //当加载图片，小于limit时，会将图片编译成base64字符串形式
+              //当加载图片，大于limit时，会将图片使用file-loader模块加载
+              limit: 8192,
+              name: 'img/[name].[hash:8].[ext]'
+            }
+          }]
+        },
+        /*配置es6转es5*/
+        {
+          test: /\.js$/,
+          /*排除以下文件夹转换*/
+          exclude: /(node_modules|bower_components)/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['es2015']
+            }
           }
-
-        }]
-      },
-      /*配置es6转es5*/
-      {
-        test: /\.js$/,
-        /*排除以下文件夹转换*/
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-
-            presets: ['es2015']
-          }
+        },
+        /*配置vue-loader和vue-template-compiler*/
+        {
+          test: /\.vue$/,
+          use: ['vue-loader']
+        },
+        {
+          test: require.resolve('jquery'), //require.resolve 用来获取模块的绝对路径
+          use: [{
+            loader: 'expose-loader',
+            options: 'jQuery'
+          }, {
+            loader: 'expose-loader',
+            options: '$'
+          }]
         }
-      },
-      /*配置vue-loader和vue-template-compiler*/
-      {
-        test: /\.vue$/,
-        use: ['vue-loader']
-
-      },
-      {
-        test: require.resolve('jquery'), //require.resolve 用来获取模块的绝对路径
-        use: [{
-          loader: 'expose-loader',
-          options: 'jQuery'
-        }, {
-          loader: 'expose-loader',
-          options: '$'
-        }]
-      }
     ],
   },
   
