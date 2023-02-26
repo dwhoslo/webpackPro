@@ -26,7 +26,7 @@ export default defineComponent ({
         <div id="First" v-if="Global.Status.isLogin?true:false">
         
         {{state.name}}
-        <el-input v-model="input"></el-input>
+            <el-input v-model="input"></el-input>
         <Test/>
         </div>
     `

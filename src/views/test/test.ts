@@ -8,12 +8,12 @@ export default defineComponent ({
         const state = reactive({
             name: '这个是内嵌的div组件，属于子节点'
         })
-        console.log(3)
         return{
-            state
+            state,
         }
     },
     template:` 
-        <div id="First">{{state.name}}</div>
+        <div id="First">{{state.name}}
+        </div>
     `
 })

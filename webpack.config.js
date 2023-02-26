@@ -81,12 +81,24 @@ module.exports = {
           },
           exclude: /node_modules/,
         },
-        { /*解析css, 并把css添加到html的style标签里*/
-          test: /.css$/, 
-          use: [
-            'style-loader',
-            'css-loader'
-          ] 
+        {
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader']
+        },
+        {
+          test: /\.(jpg|png|gif)$/,
+          loader: 'url-loader', // url-loader file-loader下载
+          options: {
+              limit: 8 * 1024, // 将小于8kb的图片用based64处理
+              esModule: false,//关闭url-loader的es6语法模块法解析，使用commonjs
+          },
+          type:'javascript/auto' //转换 json 为 js
+
+        },
+          // html文件中src图片资源
+        {
+            test:/\.html$/,
+            loader:'html-loader'
         },
         // 导入less文件
         {
@@ -104,18 +116,7 @@ module.exports = {
           ]
         },
         /*配置url*/
-        {
-          test: /\.(png|jpg|gif|jpeg)$/,
-          use: [{
-            loader: 'url-loader',
-            options: {
-              //当加载图片，小于limit时，会将图片编译成base64字符串形式
-              //当加载图片，大于limit时，会将图片使用file-loader模块加载
-              limit: 8192,
-              name: 'img/[name].[hash:8].[ext]'
-            }
-          }]
-        },
+        
         /*配置es6转es5*/
         {
           test: /\.js$/,
