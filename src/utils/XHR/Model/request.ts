@@ -1,6 +1,11 @@
 import $ from 'jquery';
 import Global from '../../Global/Global'
-export default function request(url: string, options: any) {
+interface IOptions {
+    type: string,
+    data: any,
+    async: boolean
+}
+export default function request(url: string, options: IOptions): Promise<any>  {
     return new Promise((resolve, reject) => {
         $.ajax({
             url:Global.o_Request.BASE_URL + url,
@@ -14,5 +19,5 @@ export default function request(url: string, options: any) {
                 reject(err);
             }
         })
-    })
+    }) 
 }
