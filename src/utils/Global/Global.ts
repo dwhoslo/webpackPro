@@ -11,6 +11,7 @@ interface o_Request{
 }
 const o_Request:o_Request = reactive({
     BASE_URL: 'http://43.142.180.157:3000/'
+    // BASE_URL: 'http://localhost:3000/'
 })
 
 export default  {

@@ -3,3 +3,6 @@ let Http = new http.o_Request()
 export function UserLogin (url:any,Data:any) {
     return Http.post(url,Data)
 }
+export function UserRegister (url:any,Data:any) {
+    return Http.post(url,Data)
+}
