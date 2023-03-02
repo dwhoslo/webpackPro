@@ -9,14 +9,34 @@ import { defineComponent } from "@vue/runtime-core";
             [key:string]:string
         }
         const tJsondata2:tJsondata2 = {}
+        const UserInfo = reactive({
+            name:'alies',
+            age:25
+        })
         tJsondata2.name = '这是我的第二个子节点'
+        const simulationRegister = () => {
+            $.ajax({
+                url: 'http://localhost:3000/newRegister',
+                type: 'post',
+                data: UserInfo,
+                success: function (data) {
+                    console.log(data)
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            })
+        }
+        
         return{
             Str,
-            Global
+            Global,
+            simulationRegister
         }
     },
     
     template:` 
         <div id="Second" v-if="Global.Status.isLogin?true:false">{{Str}}{{Global.Status.isLogin}}</div>
+        <div @click="simulationRegister">发送请求</div>
     `
  })
