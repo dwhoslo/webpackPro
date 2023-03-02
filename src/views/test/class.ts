@@ -20,4 +20,16 @@ export namespace MyFun  {
         
 //     }
 // }
-
+interface tJsondata {
+    [key:string]:any
+}
+class MyTest {
+    public jsonData:tJsondata = {
+        name: 'oslo',
+    }
+    public constructor() {}
+    public Fun():void {
+        this.jsonData.age = 18
+        console.log(this.jsonData.name);
+    }
+}

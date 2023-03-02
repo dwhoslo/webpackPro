@@ -15,7 +15,10 @@ export default defineComponent ({
         const state = reactive({
             name: 'tom'
         })
-        
+        const jsonData:jsonDatas = reactive({
+            name: 'oslo',
+        })
+        jsonData.age = 18
         return{
             state,
             Global,

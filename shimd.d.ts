@@ -7,3 +7,7 @@ declare module '*.vue' {
 interface Window {
   localStorage: any;
 }
+
+declare interface jsonDatas{
+  [key:string]:any
+}
