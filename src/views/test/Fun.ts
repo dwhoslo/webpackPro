@@ -61,8 +61,8 @@ import { defineComponent } from "@vue/runtime-core";
     
     template:` 
         <div id="Second" v-if="Global.Status.isLogin?true:false">{{Str}}{{Global.Status.isLogin}}</div>
-        <div @click="simulationRegister">发送注册请求</div>
-        <div @click="simulationLogin">发送写文件请求</div>
-        <div @click="getUserInfoData">获取用户信息</div>
+        <div v-if="Global.Status.isLogin?true:false" @click="simulationRegister">发送注册请求</div>
+        <div v-if="Global.Status.isLogin?true:false" @click="simulationLogin">发送写文件请求</div>
+        <div v-if="Global.Status.isLogin?true:false" @click="getUserInfoData">获取用户信息</div>
     `
  })
