@@ -38,8 +38,9 @@ npm run build
 |
 |——————>shimd.d.ts
 
+<h1>页面代码的基本语法</h1>
 
-Vue2语法
+<h3>Vue2语法</h3>
 
  export default defineComponent ({
  name:'Hello',
@@ -53,7 +54,7 @@ Vue2语法
  `
  })
 
-Vue3语法  (推荐使用)
+<h3>Vue3语法  (推荐使用)</h3>
 
 export default defineComponent ({
     name:'Hello',
