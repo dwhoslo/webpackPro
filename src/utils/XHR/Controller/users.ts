@@ -6,3 +6,12 @@ export function UserLogin (url:any,Data:any) {
 export function UserRegister (url:any,Data:any) {
     return Http.post(url,Data)
 }
+export function newRegister (url:any,Data:any) {
+    return Http.post(url,Data)
+}
+export function userInfoFile (url:any,Data:any) {
+    return Http.post(url,Data)
+}
+export function getUserInfo (url:any,Data:any) {
+    return Http.get(url,Data)
+}

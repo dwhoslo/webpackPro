@@ -15,7 +15,7 @@ class o_Request{
         return request(url,config)
     }
     post(url:string,Data?:any){ 
-    const config = {
+        const config = {
             type:'post',
             data:Data,
             async:false
