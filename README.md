@@ -1,4 +1,45 @@
-// Vue2语法
+<h1>项目运行</h1>
+1、安装
+npm install
+2、运行
+npm run start 
+3、打包
+npm run build 
+
+|
+|——————>src
+        |
+        |————>main.ts                       //入口文件
+        |
+        |————>index.html                    //html渲染模板文件
+        |
+        |————>assest                        //静态资源文件
+        |
+        |————>utils                         //控制层，资源管理文件
+        |        |
+        |        |————>Global               //全局字段配置文件
+        |        |
+        |        |————>Style                //全局样式配置文件
+        |        |
+        |        |————>XHR                  //全局接口交互配置文件
+        |               |
+        |               |————>Controller    //  全局数据交互控制层
+        |               |
+        |               |————>Model         //全局数据交互数据层
+        |
+        |
+        |————>views
+        |        |
+        |        |————>plugins
+        |        |
+        |        |————>test
+        |
+|——————>webpack.config.js
+|
+|——————>shimd.d.ts
+
+
+Vue2语法
 
  export default defineComponent ({
  name:'Hello',
@@ -12,7 +53,7 @@
  `
  })
 
-// Vue3语法  (推荐使用)
+Vue3语法  (推荐使用)
 
 export default defineComponent ({
     name:'Hello',
