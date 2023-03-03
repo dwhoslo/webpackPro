@@ -5,7 +5,7 @@ interface  o_Request{
     post(url:string,Data?:any):void,
 }
 
-class o_Request{
+class o_Request implements o_Request{
     get(url:string,Data?:any){
         const config = {
             type:'get',
