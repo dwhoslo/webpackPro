@@ -55,7 +55,8 @@ import { defineComponent } from "@vue/runtime-core";
             simulationRegister,
             simulationLogin,
             getUserInfoData,
-            Tips
+            Tips,
+            img:require('../../assest/11.jpg')
         }
     },
     
@@ -64,5 +65,6 @@ import { defineComponent } from "@vue/runtime-core";
         <div v-if="Global.Status.isLogin?true:false" @click="simulationRegister">发送注册请求</div>
         <div v-if="Global.Status.isLogin?true:false" @click="simulationLogin">发送写文件请求</div>
         <div v-if="Global.Status.isLogin?true:false" @click="getUserInfoData">获取用户信息</div>
+        <img :src=img>
     `
  })

@@ -4,6 +4,8 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const AutoImport = require('unplugin-auto-import/webpack')
 const Components = require('unplugin-vue-components/webpack')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 
 module.exports = {
@@ -83,7 +85,11 @@ module.exports = {
         },
         {
             test: /\.css$/,
-            use: ['style-loader', 'css-loader']
+            // use: ['style-loader', 'css-loader']
+            use: [
+              MiniCssExtractPlugin.loader,
+              'css-loader'
+            ]
         },
         {
           test: /\.(jpg|png|gif)$/,
@@ -91,6 +97,7 @@ module.exports = {
           options: {
               limit: 8 * 1024, // 将小于8kb的图片用based64处理
               esModule: false,//关闭url-loader的es6语法模块法解析，使用commonjs
+              name:'img/[name].[hash:10].[ext]'
           },
           type:'javascript/auto' //转换 json 为 js
 
@@ -146,10 +153,19 @@ module.exports = {
         }
     ],
   },
-  
+  optimization: {
+    minimizer: [
+      // 在 webpack@5 中，你可以使用 `...` 语法来扩展现有的 minimizer（即 `terser-webpack-plugin`），将下一行取消注释
+      // `...`,
+      new CssMinimizerPlugin(),
+    ],
+    minimize:true,    //开发环境开启css优化
+  },
   // 配置webpack的插件
   plugins: [
     new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin(),
+    // new CssMinimizerPlugin(),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
     }),
